@@ -152,26 +152,41 @@
         <p class="muted">Standards, data, tools, country practice and case law behind the week in Turin. Search across everything, or jump to a category.</p>
       </div>
 
-      <div class="filters res-filters">
-        <input type="search" id="r-search" placeholder="Search resources and case law…" aria-label="Search resources">
-        <span class="muted" id="r-count" aria-live="polite"></span>
+      <div class="ex-layout">
+        <aside class="ex-side" id="ex-side">
+          <label class="ex-slabel" for="r-search">Search</label>
+          <input type="search" id="r-search" placeholder="Try &ldquo;portability&rdquo; or &ldquo;monotax&rdquo;" aria-label="Search resources and case law">
+          <div id="ex-facets"></div>
+          <button class="ex-reset" id="ex-reset" type="button">Clear all filters</button>
+        </aside>
+        <div class="ex-main">
+          <div class="ex-bar">
+            <span class="ex-count" id="r-count" aria-live="polite"></span>
+            <label class="ex-sort">Sort by
+              <select id="ex-sort">
+                <option value="relevant">Most relevant</option>
+                <option value="az">Title A–Z</option>
+                <option value="cat">Category</option>
+                <option value="type">Type</option>
+              </select>
+            </label>
+          </div>
+          <div class="chipnav" id="r-nav"></div>
+          <div id="resources"></div>
+        </div>
       </div>
-      <div class="chipnav" id="r-nav"></div>
 
-      <div id="resources"></div>
-
-      <!-- CASE LAW — its own category -->
+      <!-- CASE LAW — a category of the explorer above, with its own note -->
       <section class="resource-group" id="caselaw-group">
         <div class="group-head">
           <h3>Case law</h3>
           <span class="group-weeks">Courts that moved the coverage line</span>
         </div>
         <p class="muted" id="caselaw-note"></p>
-        <div class="chipnav sub" id="cl-nav"></div>
-        <div id="caselaw"></div>
+        <p class="muted">The decisions themselves sit in the explorer above — filter <b>Category → Case law</b>, then narrow by theme or jurisdiction.</p>
         <div class="note compendium">
           <strong>ITCILO Compendium feeds</strong>
-          <p>The four Compendium subject searches that feed this category. Open each one and add its decisions to <code>data/resources.js</code>.</p>
+          <p>The four Compendium subject searches this category was harvested from.</p>
           <div class="feed-links" id="cl-feeds"></div>
         </div>
       </section>
@@ -210,6 +225,7 @@
   <script src="data/brain.js?v=20261025"></script>
   <script src="data/flow.js?v=20261026"></script>
   <script src="assets/app.js?v=20261025"></script>
+  <script src="assets/explore.js?v=20261026"></script>
   <script src="assets/flow.js?v=20261026"></script>
   <script src="assets/brain.js?v=20261025"></script>
 </body>

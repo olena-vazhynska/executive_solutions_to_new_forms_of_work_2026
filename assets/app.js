@@ -531,7 +531,22 @@
 
   /* ---------- Case law ---------- */
   var clTheme = "all";
+  /* The decisions themselves are rendered by assets/explore.js inside the
+     unified stream, so only the category note and the Compendium feed links
+     are drawn here. renderCaselawLegacy below is the previous standalone list,
+     kept for reference and no longer called. */
   function renderCaselaw() {
+    if (!L) return;
+    var note = $("#caselaw-note"); if (note) note.textContent = L.note;
+    var feeds = $("#cl-feeds");
+    if (feeds) {
+      feeds.innerHTML = L.feeds.map(function (f) {
+        return '<a class="feed-link" href="' + esc(f[1]) + '" target="_blank" rel="noopener">' + esc(f[0]) + " ↗</a>";
+      }).join("");
+    }
+  }
+
+  function renderCaselawLegacy() {
     if (!L) return;
     $("#caselaw-note").textContent = L.note;
     $("#cl-nav").innerHTML =
@@ -601,8 +616,10 @@
   renderDays();
   renderParticipants();
   renderSurvey();
+  // The Resources tab is owned by assets/explore.js — it renders the unified
+  // resource + case law stream and the sidebar facets. renderCaselaw() still
+  // fills the Compendium feed links at the foot of that tab.
   renderCaselaw();
-  renderResources();
   renderContact();
   showTab((location.hash || "#overview").slice(1), true);
 })();
