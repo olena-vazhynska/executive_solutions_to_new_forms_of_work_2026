@@ -672,16 +672,22 @@ address { font-style: normal; }
   --c-d: #7A4FBF;  /* administration        */
   --c-e: #C2185B;  /* voice                 */
   --c-f: #B15C00;  /* governance            */
+  /* Two further accents used only by case law themes that have no cluster:
+     termination and income loss, and representation and voice. */
+  --c-g: #A4343A;  /* termination           */
+  --c-h: #4C7A34;  /* representation        */
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --c-a: #7f9bdd; --c-b: #3bb8ea; --c-c: #3aa9a7;
     --c-d: #a98ae0; --c-e: #e8699d; --c-f: #dd9336;
+    --c-g: #e2868b; --c-h: #9fc67f;
   }
 }
 :root[data-theme="dark"] {
   --c-a: #7f9bdd; --c-b: #3bb8ea; --c-c: #3aa9a7;
   --c-d: #a98ae0; --c-e: #e8699d; --c-f: #dd9336;
+  --c-g: #e2868b; --c-h: #9fc67f;
 }
 .c-a { --cc: var(--c-a); } .c-b { --cc: var(--c-b); } .c-c { --cc: var(--c-c); }
 .c-d { --cc: var(--c-d); } .c-e { --cc: var(--c-e); } .c-f { --cc: var(--c-f); }
@@ -765,6 +771,8 @@ address { font-style: normal; }
 .cl-theme.t-affiliation { background: color-mix(in srgb, var(--c-b) 18%, transparent); color: var(--c-c); }
 .cl-theme.t-contribution { background: color-mix(in srgb, var(--c-c) 16%, transparent); color: var(--c-c); }
 .cl-theme.t-scope { background: color-mix(in srgb, var(--c-d) 16%, transparent); color: var(--c-d); }
+.cl-theme.t-termination { background: color-mix(in srgb, var(--c-g) 16%, transparent); color: var(--c-g); }
+.cl-theme.t-representation { background: color-mix(in srgb, var(--c-h) 18%, transparent); color: var(--c-h); }
 .cl-theme.t-pending { background: color-mix(in srgb, var(--c-f) 18%, transparent); color: var(--c-f); }
 .cl-card h4 { margin: 0 0 4px; font-size: 16px; }
 .cl-cite { margin: 0 0 10px; font-size: 12.5px; color: var(--muted); font-style: italic; }

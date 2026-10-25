@@ -16,7 +16,7 @@ Built in the house style of the [Impact Assessment 2026 dashboard](https://olena
 
 ## Editing the content
 
-All content lives in `data/` — nothing in `assets/` needs to be touched.
+All content lives in `data/` — nothing in `assets/` needs to be touched. The one exception is a new case law **theme**: adding one to `CASELAW.themes` also wants an accent colour in `assets/style.css` (see the note on the case law below), or its chip falls back to the neutral style.
 
 | File | Content |
 | --- | --- |
@@ -49,7 +49,7 @@ The **remaining 71** are the full harvest of the four ITCILO Compendium subject 
 
 The ITCILO Compendium remains the authoritative collection for all of them.
 
-Two case law themes — `termination` and `representation` — have no accent colour in `assets/style.css` and render in the neutral chip style. Adding one line each to the `.cl-theme.t-*` block would colour them, and is the only thing in `assets/` these additions could want.
+All eight case law themes carry their own accent. The six cluster colours `--c-a` to `--c-f` were already taken, so the two themes that have no matching knowledge cluster — `termination` and `representation` — use two further tokens, `--c-g` and `--c-h`, declared alongside them in `assets/style.css` for light, system-dark and toggled-dark.
 
 ## Privacy
 
