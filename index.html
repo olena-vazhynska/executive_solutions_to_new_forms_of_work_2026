@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Solutions to New Forms of Work — Course dashboard</title>
+  <meta name="description" content="Course dashboard — Executive Solutions to New Forms of Work (ITCILO A9019238), Turin, 19–23 October 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css?v=20261025">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <div class="pills">
+        <span class="pill solid">Turin · ITCILO Campus</span>
+        <span class="pill">Social Protection</span>
+        <span class="pill">Course A9019238</span>
+      </div>
+      <h1>Executive Solutions<br>to New Forms of Work</h1>
+      <p class="hero-sub" id="hero-lead"></p>
+      <div class="hero-meta" id="hero-meta"></div>
+      <div class="kpis" id="kpis"></div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Dashboard sections">
+    <div class="wrap tabs-inner">
+      <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+      <button role="tab" data-tab="journey">Learning journey</button>
+      <button role="tab" data-tab="participants">Participants</button>
+      <button role="tab" data-tab="resources">Resources</button>
+      <button role="tab" data-tab="brain">Collective brain</button>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <!-- 01 · OVERVIEW -->
+    <section id="panel-overview" data-panel="overview" class="panel" role="tabpanel">
+      <div class="next-card" id="next-card"></div>
+
+      <div class="grid-2">
+        <article class="card">
+          <p class="eyebrow">01 · The course</p>
+          <h2>What this course is about</h2>
+          <p id="overview-text"></p>
+        </article>
+        <article class="card">
+          <h2>Where we are</h2>
+          <div id="progress"></div>
+        </article>
+      </div>
+
+      <div class="cards-3" id="pillars"></div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h2>What will I learn?</h2>
+          <ul class="ticks" id="topics"></ul>
+        </article>
+        <article class="card">
+          <h2>What will I be able to do?</h2>
+          <ol class="numbered" id="outcomes"></ol>
+        </article>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h2>Who takes this course?</h2>
+          <p id="audience"></p>
+        </article>
+        <article class="card" id="facts"></article>
+      </div>
+
+      <h2 class="section-title">Resource persons</h2>
+      <p class="muted">Trainers and experts leading the sessions in Turin.</p>
+      <div class="people-grid" id="people"></div>
+    </section>
+
+    <!-- 02 · LEARNING JOURNEY -->
+    <section id="panel-journey" data-panel="journey" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">02 · Learning journey</p>
+        <h2 class="section-title flush">Build a toolbox, then design your own solution</h2>
+        <p class="muted" id="journey-lead"></p>
+      </div>
+
+      <div class="track-legend">
+        <span class="tl tl-tool"><i></i>Toolbox — the building blocks</span>
+        <span class="tl tl-lab"><i></i>Scheme Design Lab — your own solution</span>
+      </div>
+
+      <div class="toolbox" id="toolbox"></div>
+
+      <div class="note">
+        <strong>How the week works</strong>
+        <p id="learning-format"></p>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <h2>60 hours, three phases</h2>
+          <div class="phases" id="phases"></div>
+        </article>
+        <article class="card">
+          <h2>Why join?</h2>
+          <div class="why-grid" id="why"></div>
+        </article>
+      </div>
+
+      <div class="section-heading">
+        <h2 class="section-title">The week, day by day</h2>
+        <p class="muted">The full residential programme. Scheme Design Lab sessions are highlighted.</p>
+      </div>
+      <div class="toolbar">
+        <div class="toolbar-actions">
+          <label for="day-filter" class="visually-hidden">Filter by day</label>
+          <select id="day-filter"><option value="all">All five days</option></select>
+          <span class="muted" id="session-count" aria-live="polite"></span>
+        </div>
+        <div class="toolbar-actions">
+          <label class="switch"><input type="checkbox" id="labs-only"> <span>Scheme Design track only</span></label>
+        </div>
+      </div>
+      <div id="days"></div>
+      <p class="source-note">Source: <em>A9019238 — Executive Solutions to New Forms of Work</em>, agenda of 19–23 October 2026, and the course Information Note. All times are Turin time (CEST, UTC+2).</p>
+    </section>
+
+    <!-- 03 · PARTICIPANTS -->
+    <section id="panel-participants" data-panel="participants" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">03 · The cohort</p>
+        <h2 class="section-title flush">Participants</h2>
+        <p class="muted">Search, filter and sort the roster; the demographic charts update with your filters. The pre-course survey is merged in below.</p>
+      </div>
+      <div id="participants-body"></div>
+
+      <div class="section-heading">
+        <h2 class="section-title">Pre-course survey</h2>
+        <p class="muted" id="survey-lead"></p>
+      </div>
+      <div id="survey-body"></div>
+      <p class="source-note">Roster source: <em>A9019238_ParticipantList_EN_12_Oct</em> (34 registered participants). Contact details are deliberately not published. Survey source: entry survey on the ITCILO eCampus.</p>
+    </section>
+
+    <!-- 04 · RESOURCES -->
+    <section id="panel-resources" data-panel="resources" class="panel" role="tabpanel" hidden>
+      <div class="section-heading">
+        <p class="eyebrow">04 · Explore resources</p>
+        <h2 class="section-title flush">The course library</h2>
+        <p class="muted">Standards, data, tools, country practice and case law behind the week in Turin. Search across everything, or jump to a category.</p>
+      </div>
+
+      <div class="filters res-filters">
+        <input type="search" id="r-search" placeholder="Search resources and case law…" aria-label="Search resources">
+        <span class="muted" id="r-count" aria-live="polite"></span>
+      </div>
+      <div class="chipnav" id="r-nav"></div>
+
+      <div id="resources"></div>
+
+      <!-- CASE LAW — its own category -->
+      <section class="resource-group" id="caselaw-group">
+        <div class="group-head">
+          <h3>Case law</h3>
+          <span class="group-weeks">Courts that moved the coverage line</span>
+        </div>
+        <p class="muted" id="caselaw-note"></p>
+        <div class="chipnav sub" id="cl-nav"></div>
+        <div id="caselaw"></div>
+        <div class="note compendium">
+          <strong>ITCILO Compendium feeds</strong>
+          <p>The four Compendium subject searches that feed this category. Open each one and add its decisions to <code>data/resources.js</code>.</p>
+          <div class="feed-links" id="cl-feeds"></div>
+        </div>
+      </section>
+
+      <div class="grid-2">
+        <article class="card" id="contact"></article>
+        <article class="card">
+          <h2>How to use this library</h2>
+          <p class="muted">Three habits that make the difference in the Scheme Design Lab.</p>
+          <ul class="ticks">
+            <li><b>Check the date and the scope.</b> Coverage statistics and legal positions in this field age in months, not years.</li>
+            <li><b>Read a judgment for its test, not its result.</b> The test is the part you can transplant into your own legal order.</li>
+            <li><b>Pair every standard with an administrative question.</b> A rule that cannot be registered, collected or appealed is not yet a solution.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 05 · COLLECTIVE BRAIN -->
+    <section id="panel-brain" data-panel="brain" class="panel" role="tabpanel" hidden>
+      <div id="brain-app" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p class="footer-disclaimer">This dashboard is intended for training purposes only, in the context of activity A9019238 — Executive Solutions to New Forms of Work, 19–23 October 2026, Turin. Case law entries are provided for teaching and must be verified against the original judgments before being relied on.</p>
+      <p>© International Training Centre of the ILO, 2026 · Programme on Social Protection, Governance and Tripartism (SPGT)</p>
+    </div>
+  </footer>
+
+  <script src="data/course.js?v=20261025"></script>
+  <script src="data/participants.js?v=20261025"></script>
+  <script src="data/resources.js?v=20261025"></script>
+  <script src="data/brain.js?v=20261025"></script>
+  <script src="assets/app.js?v=20261025"></script>
+  <script src="assets/brain.js?v=20261025"></script>
+</body>
+</html>
