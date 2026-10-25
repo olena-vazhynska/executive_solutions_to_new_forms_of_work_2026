@@ -304,18 +304,48 @@
     return Object.keys(m).map(function (k) { return [k, m[k]]; })
       .sort(function (a, b) { return b[1] - a[1] || a[0].localeCompare(b[0]); });
   }
-  function barChart(title, data, note) {
+  // `opts.denominator` turns the value labels into "n (p%)"; `opts.footer`
+  // replaces the default record count.
+  function barChart(title, data, note, opts) {
     if (!data.length) return "";
-    var max = data[0][1], total = data.reduce(function (a, d) { return a + d[1]; }, 0);
+    opts = opts || {};
+    var max = data.reduce(function (a, d) { return Math.max(a, d[1]); }, 0) || 1;
+    var total = data.reduce(function (a, d) { return a + d[1]; }, 0);
+    var den = opts.denominator;
     return '<div class="card"><h2>' + esc(title) + "</h2>" +
       (note ? '<p class="muted">' + esc(note) + "</p>" : "") +
       data.slice(0, 14).map(function (d) {
+        var pct = den ? Math.round((d[1] / den) * 100) : null;
         return '<div class="hbar"><span class="hbar-label" title="' + esc(d[0]) + '">' + esc(d[0]) + "</span>" +
           '<span class="hbar-track"><i style="width:' + (d[1] / max) * 100 + '%"></i></span>' +
-          '<span class="hbar-val">' + d[1] + "</span></div>";
+          '<span class="hbar-val">' + d[1] + (pct === null ? "" : ' <small>' + pct + "%</small>") + "</span></div>";
       }).join("") +
       (data.length > 14 ? '<div class="muted" style="margin:.5rem 0 0">+ ' + (data.length - 14) + " more</div>" : "") +
-      '<p class="muted bar-total">' + total + " records · " + data.length + " categor" + (data.length === 1 ? "y" : "ies") + "</p></div>";
+      '<p class="muted bar-total">' + (opts.footer ||
+        (total + " records · " + data.length + " categor" + (data.length === 1 ? "y" : "ies"))) + "</p></div>";
+  }
+
+  // Vertical distribution for a 1–10 self-rating, with mean and median marked.
+  function scaleChart(b) {
+    var max = b.data.reduce(function (a, d) { return Math.max(a, d[1]); }, 0) || 1;
+    // Columns are evenly spaced, so a value sits at the centre of its column.
+    var pos = function (v) { return ((v - b.min + 0.5) / b.data.length) * 100; };
+    return '<div class="card scale-card"><h2>' + esc(b.title) + "</h2>" +
+      '<p class="muted">' + esc(b.note) + "</p>" +
+      '<div class="scale-stats">' +
+        '<div><b>' + b.mean.toFixed(1) + "</b><span>mean</span></div>" +
+        '<div><b>' + b.median + "</b><span>median</span></div>" +
+        '<div><b>' + b.min + "–" + b.max + "</b><span>full range used</span></div>" +
+      "</div>" +
+      '<div class="scale-plot">' + b.data.map(function (d) {
+        return '<div class="scale-col" title="' + esc(d[0]) + ": " + d[1] + ' respondent' + (d[1] === 1 ? "" : "s") + '">' +
+          '<span class="scale-n">' + (d[1] || "") + "</span>" +
+          '<i style="height:' + (d[1] / max) * 100 + '%"></i>' +
+          '<span class="scale-x">' + esc(d[0]) + "</span></div>";
+      }).join("") +
+        '<span class="scale-marker mean" style="left:' + pos(b.mean).toFixed(1) + '%"><b>mean</b></span>' +
+      "</div>" +
+      '<p class="muted bar-total">' + b.responses + " respondents · 1 = not confident, 10 = very confident</p></div>";
   }
   var LABELS = { name: "Name", country: "Country", region: "Region", sex: "Sex", city: "City",
                  organization: "Institution", orgType: "Institution type", position: "Position", group: "Nominated as" };
@@ -397,7 +427,7 @@
     if (!S) { body.innerHTML = ""; return; }
     $("#survey-lead").innerHTML =
       "Entry survey run on the ITCILO eCampus before the residential week. " +
-      '<a href="' + esc(S.url) + '" target="_blank" rel="noopener">Open the activity ↗</a>';
+      '<a href="' + esc(S.url) + '" target="_blank" rel="noopener">Open the activity \u2197</a>';
 
     var rate = (S.responses && S.invited) ? Math.round((S.responses / S.invited) * 100) : null;
     var head =
@@ -405,11 +435,11 @@
         "<h2>Response rate</h2>" +
         (rate === null
           ? '<p class="muted">Not yet recorded. Set <code>responses</code> in <code>data/participants.js</code> once the eCampus export is in.</p>' +
-            '<div class="bar pending"><i style="width:0%"></i></div>' +
-            '<div class="progress-row"><span>0 of ' + S.invited + " invited</span><span>awaiting export</span></div>"
-          : '<div class="progress-head"><span>' + S.responses + " of " + S.invited + " participants</span><span>" + rate + "%</span></div>" +
+            '<div class="bar pending"><i style="width:0%"></i></div>'
+          : '<div class="progress-head"><span>' + S.responses + " of " + S.invited + " registered participants answered</span><span>" + rate + "%</span></div>" +
             '<div class="bar"><i style="width:' + rate + '%"></i></div>' +
-            (S.updated ? '<p class="muted" style="margin:.5rem 0 0">Last updated ' + esc(longDate(S.updated)) + "</p>" : "")) +
+            '<div class="progress-row"><span>' + S.blocks.length + " questions</span><span>" +
+              (S.updated ? "as at " + esc(longDate(S.updated)) : "") + "</span></div>") +
       "</div>";
 
     var blocks = (S.blocks || []).map(function (b) {
@@ -421,16 +451,35 @@
           '<div class="ghost-bars"><i style="width:72%"></i><i style="width:54%"></i><i style="width:38%"></i><i style="width:21%"></i></div>' +
           "</div>";
       }
+      if (b.kind === "scale") return scaleChart(b);
       if (b.kind === "list") {
         return '<div class="card survey-block"><h2>' + esc(b.title) + "</h2>" +
           '<p class="muted">' + esc(b.note) + "</p>" +
-          '<ul class="ticks">' + b.data.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" +
+          '<ol class="numbered">' + b.data.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ol>" +
           (b.responses ? '<p class="muted bar-total">' + b.responses + " respondents</p>" : "") + "</div>";
       }
-      return barChart(b.title, b.data, b.note);
+      // Multi-select questions are counted against respondents, not against
+      // the sum of the answers, so the percentages stay meaningful.
+      var sum = b.data.reduce(function (a, d) { return a + d[1]; }, 0);
+      var multi = b.responses && sum > b.responses;
+      return barChart(b.title, b.data, b.note, {
+        denominator: b.responses || null,
+        footer: b.responses
+          ? b.responses + " respondents" + (multi ? " · " + sum + " selections, so the shares sum to more than 100%" : "")
+          : null
+      });
     }).join("");
 
-    body.innerHTML = head + '<div class="charts">' + blocks + "</div>";
+    var read = (S.readacross && S.readacross.length)
+      ? '<div class="section-heading"><h2 class="section-title">What this means for the week</h2>' +
+        '<p class="muted">Reading the survey against the agenda.</p></div>' +
+        '<div class="readacross">' + S.readacross.map(function (r) {
+          return '<article class="card ra"><p class="ra-obs">' + esc(r[0]) + "</p>" +
+            '<p class="ra-impl"><span class="eyebrow">So</span>' + esc(r[1]) + "</p></article>";
+        }).join("") + "</div>"
+      : "";
+
+    body.innerHTML = head + '<div class="charts">' + blocks + "</div>" + read;
   }
 
   /* ---------- Resources ---------- */

@@ -28,17 +28,16 @@ All content lives in `data/` — nothing in `assets/` needs to be touched.
 Open `index.html` directly, or publish via GitHub Pages (Settings → Pages → deploy from branch, root folder).
 Append `?now=2026-10-21T10:00:00%2B02:00` to preview the dashboard at a given moment during the week.
 
-## Three things still to fill in
+## Two things still to fill in
 
 Each of these renders today as an explicit "awaiting" state rather than as invented content.
 
-1. **Pre-course survey results** — the eCampus feedback activity (`mod/feedback/view.php?id=493930`) is behind the ITCILO login. Export it to Excel, then in `data/participants.js` set `SURVEY.responses`, and for each block set `pending: false` and fill `data` with `[label, count]` pairs. The response-rate meter and all bars compute themselves.
-2. **Executive solutions** — the individual presentations. In `data/brain.js`, set `pending: false` on a country entry and complete `title`, `problem`, `solution`, `blocks` and `insight`. **Countries and institutions only — participant names are never stored in this repository.**
-3. **ITCILO Compendium case law** — the four subject searches are listed under `CASELAW.feeds` and linked at the bottom of the Resources tab. Add their decisions to `CASELAW.decisions` in the same shape as the twelve already there.
+1. **Executive solutions** — the individual presentations. In `data/brain.js`, set `pending: false` on a country entry and complete `title`, `problem`, `solution`, `blocks` and `insight`. **Countries and institutions only — participant names are never stored in this repository.**
+2. **ITCILO Compendium case law** — the four subject searches are listed under `CASELAW.feeds` and linked at the bottom of the Resources tab. Add their decisions to `CASELAW.decisions` in the same shape as the seventeen already there.
 
 ## A note on the case law
 
-The twelve decisions in `data/resources.js` were compiled for this dashboard and each carries its formal citation and a link. They are teaching material: several are under appeal or have been overtaken by legislation, and **every entry should be verified against the original judgment before it is relied on or cited**. The ITCILO Compendium remains the authoritative collection.
+The seventeen decisions in `data/resources.js` were compiled for this dashboard and each carries its formal citation and a link. They are teaching material: several are under appeal or have been overtaken by legislation, and **every entry should be verified against the original judgment before it is relied on or cited**. The ITCILO Compendium remains the authoritative collection.
 
 ## Privacy
 

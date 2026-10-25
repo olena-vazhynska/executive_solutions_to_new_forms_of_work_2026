@@ -884,3 +884,29 @@ address { font-style: normal; }
   .br-stage { min-width: 135px; }
   .cl-head { flex-direction: column; }
 }
+
+/* --- Survey: scale distribution, percentages and read-across ------------- */
+.cl-theme.t-regulation { background: color-mix(in srgb, var(--c-e) 14%, transparent); color: var(--c-e); }
+.hbar-val small { font-weight: 600; opacity: .62; margin-left: 2px; }
+
+.scale-card .scale-stats { display: flex; gap: 26px; margin: 4px 0 16px; }
+.scale-stats b { display: block; font: 800 24px/1 "Noto Sans", sans-serif; color: var(--primary); }
+.scale-stats span { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 700; margin-top: 4px; }
+.scale-plot { position: relative; display: flex; align-items: flex-end; gap: 4px; height: 160px; padding-bottom: 54px; }
+.scale-col { position: relative; z-index: 1; flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+.scale-col i { display: block; width: 100%; background: var(--primary); border-radius: 4px 4px 0 0; min-height: 2px; }
+.scale-col i[style*="height:0%"] { background: var(--border); }
+.scale-n { font: 700 11px/1 "Noto Sans", sans-serif; color: var(--muted); margin-bottom: 4px; min-height: 11px; }
+.scale-x { position: absolute; bottom: -20px; font-size: 11px; color: var(--muted); font-weight: 600; }
+.scale-marker { position: absolute; z-index: 0; top: 0; bottom: 38px; width: 0; border-left: 2px dashed var(--accent); transform: translateX(-1px); }
+.scale-marker b {
+  position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%);
+  font: 700 10px/1 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--accent); white-space: nowrap;
+}
+
+.readacross { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; }
+.ra { border-left: 4px solid var(--accent); }
+.ra-obs { margin: 0 0 10px; font-weight: 700; font-size: 14.5px; }
+.ra-impl { margin: 0; font-size: 13.5px; color: var(--muted); }
+.ra-impl .eyebrow { display: block; margin: 0 0 3px; }

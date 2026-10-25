@@ -153,60 +153,121 @@ window.PARTICIPANTS = [
 ];
 
 /* ============================================================================
-   PRE-COURSE SURVEY — eCampus feedback activity (mod/feedback id=493930)
+   PRE-COURSE SURVEY — eCampus feedback activity (mod/feedback/view.php?id=493930)
    ----------------------------------------------------------------------------
-   The Participants tab merges the roster above with the entry survey, the way
+   The Participants tab merges the roster above with this entry survey, the way
    the reference dashboard merges its Participants and Demographics tabs.
 
-   The survey results sit behind the ITCILO eCampus login, so nothing is
-   pre-filled here: every block below is marked `pending` and the tab renders
-   each one as an explicit "awaiting the eCampus export" placeholder rather
-   than inventing numbers.
+   Figures below are the Analysis tab of the eCampus activity: 29 of the 34
+   registered participants answered, across 7 questions. Open-ended answers are
+   grouped into themes, with responses in Turkish translated.
 
-   TO FILL IT IN
-   -------------
-   Open the feedback activity → Analysis → Export to Excel, then for each block
-   set `pending: false` and list the answer counts in `data` as [label, count].
-   `responses` is the number of people who answered that question. Everything
-   else — bars, percentages, the response-rate meter — is computed for you.
+   Block kinds
+   -----------
+     "bar"    [label, count] pairs. `ordered: true` keeps the order given
+              (use it for ordinal scales); otherwise bars sort by size.
+     "scale"  a 1–10 distribution; also takes `mean`, `median`, `min`, `max`.
+     "list"   one string per theme.
+
+   `responses` is the number of people who answered that question — it differs
+   between questions, so it is set per block. Percentages, bars and the
+   response-rate meter are all computed; nothing else needs editing.
    ========================================================================== */
 
 window.SURVEY = {
-  source: "Pre-course survey, ITCILO eCampus (activity 493930)",
+  source: "Pre-course survey, ITCILO eCampus (activity 493930) — Analysis tab",
   url: "https://ecampus.itcilo.org/mod/feedback/view.php?id=493930",
-  updated: null,          // e.g. "2026-10-12"
-  invited: 34,            // registered participants
-  responses: null,        // total number of respondents, once known
+  updated: "2026-10-12",
+  invited: 34,
+  responses: 29,
 
   blocks: [
-    { id: "familiarity", pending: true, kind: "bar",
-      title: "Familiarity with social protection for new forms of work",
-      note: "Self-assessed level of exposure to platform and non-standard work coverage issues.",
-      responses: null,
-      data: [] },
+    { id: "background", kind: "bar", ordered: false,
+      title: "Academic background",
+      note: "A legal and economic cohort above all — the two disciplines that argue classification and financing.",
+      responses: 29,
+      data: [
+        ["Economics", 7], ["Law", 7], ["Administration", 5], ["Management", 3],
+        ["Other", 3], ["Finance", 2], ["Information Technology", 1], ["Political Science", 1]
+      ] },
 
-    { id: "role", pending: true, kind: "bar",
-      title: "Professional role in the reform process",
-      note: "Where participants sit relative to scheme design: policy, legal, financing, administration, IT, oversight.",
-      responses: null,
-      data: [] },
+    { id: "experience", kind: "bar", ordered: true,
+      title: "Years of experience in social protection",
+      note: "Ordered from least to most. Two thirds bring more than five years; a small group is new to the field.",
+      responses: 29,
+      data: [
+        ["None", 2], ["Less than 2 years", 4], ["2–5 years", 2],
+        ["5–10 years", 8], ["10–20 years", 11], ["More than 20 years", 2]
+      ] },
 
-    { id: "priority", pending: true, kind: "bar",
-      title: "Most pressing coverage gap at home",
-      note: "The group of workers participants most need to bring into coverage.",
-      responses: null,
-      data: [] },
+    { id: "training", kind: "bar", ordered: true,
+      title: "Previous social protection training",
+      note: "An almost even split — the week has to work for both halves of the room.",
+      responses: 29,
+      data: [["Yes", 15], ["No", 14]] },
 
-    { id: "buildingblock", pending: true, kind: "bar",
-      title: "Scheme design block of greatest interest",
-      note: "Coverage architecture · contributions · administration and data · voice and governance.",
-      responses: null,
-      data: [] },
+    { id: "status", kind: "bar", ordered: true,
+      title: "Where the participant's country stands",
+      note: "Most arrive from systems that already work — the task is extension to new forms of work, not construction from zero.",
+      responses: 29,
+      data: [
+        ["At the initial stages of thinking about social protection", 1],
+        ["In the process of designing a new policy or programme", 3],
+        ["New policy or programme recently introduced", 2],
+        ["Ongoing policy / law reform process", 5],
+        ["Well established policy or programme in place", 18]
+      ] },
 
-    { id: "expectations", pending: true, kind: "list",
-      title: "What participants want to take home",
-      note: "Open-ended expectations, grouped into themes. Add one string per theme.",
-      responses: null,
-      data: [] }
+    { id: "topics", kind: "bar", ordered: false,
+      title: "Topics of interest",
+      note: "Up to two choices each, so the counts sum to more than the number of respondents.",
+      responses: 29,
+      data: [
+        ["Social protection and labour market transformations", 15],
+        ["Harnessing technology to reach informal and platform workers", 15],
+        ["Extension of coverage: practical examples of contributory schemes", 14],
+        ["Administrative innovation: digital tools for extending coverage", 11],
+        ["Financing and contribution models for diverse work arrangements", 9],
+        ["Navigating the ILO normative framework", 6],
+        ["What's at stake? Gaps and risks in diversified employment", 4],
+        ["Engaging social partners and intermediary actors", 4],
+        ["From regulatory change to real-time data collection", 4],
+        ["Legal and institutional adaptations", 3]
+      ] },
+
+    { id: "confidence", kind: "scale",
+      title: "Confidence on new forms of work",
+      note: "Self-rated from 1 (not confident) to 10 (very confident) before the course.",
+      responses: 26, min: 1, max: 10, mean: 6.04, median: 6,
+      data: [["1", 1], ["2", 1], ["3", 0], ["4", 3], ["5", 5], ["6", 4], ["7", 6], ["8", 4], ["9", 1], ["10", 1]] },
+
+    { id: "hopes", kind: "list",
+      title: "What participants hope to take home",
+      note: "Open-ended answers grouped into themes, most frequent first. Responses in Turkish have been translated.",
+      responses: 29,
+      data: [
+        "Extending coverage to platform, gig, informal and self-employed workers — the most frequent hope by a clear margin.",
+        "Financing and contribution design: who pays, and what contribution model works for platform workers.",
+        "International good practice and comparative country experience, and exchange with peers.",
+        "ILO frameworks, legal frameworks and policy design for non-standard work.",
+        "Using technology and digital tools to reach informal and platform workers.",
+        "Formalisation and registration of workers who remain outside the registered system.",
+        "Inclusion of migrants, refugees and host communities.",
+        "Direct application to the participant's own institution, and professional development as a manager."
+      ] }
+  ],
+
+  // Read-across between the survey and the programme — shown under the charts.
+  readacross: [
+    ["Technology ranks joint first, with 15 of 29 choosing it.",
+     "Thursday carries it twice: administrative innovation with DATAPREV, and the session on real-time data."],
+    ["Contributory extension is third at 14, financing ninth at 9.",
+     "The cohort wants the examples more than the mechanics — Wednesday should lead with the Asian and Latin American cases and derive the contribution model from them."],
+    ["Legal and institutional adaptation ranks last, chosen by 3.",
+     "Yet Law is tied as the most common academic background, and classification decides everything downstream. Tuesday morning may need to earn its place rather than assume it."],
+    ["Mean confidence is 6.0 out of 10, with a spread from 1 to 10.",
+     "Wide enough that the Scheme Design Labs should mix experience levels deliberately rather than let groups form by country."],
+    ["18 of 29 come from well-established systems.",
+     "The Labs are extension problems inside working institutions, not greenfield design — a useful framing for the World Café on Monday."]
   ]
 };

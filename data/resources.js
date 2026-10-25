@@ -71,6 +71,9 @@ window.RESOURCES = [
       ["World Employment and Social Outlook 2021: The role of digital labour platforms",
        "Still the reference study on platform business models, working conditions and the regulatory questions they raise.",
        "https://www.ilo.org/publications/flagship-reports/world-employment-and-social-outlook-2021-role-digital-labour-platforms", "Report"],
+      ["ISSA — Platform workers media monitor",
+       "The International Social Security Association's running digest of platform-work rulings, reforms and scheme launches worldwide. The fastest way to keep the case law category below current.",
+       "https://www.issa.int/platform-workers/media-monitor", "Hub"],
       ["Eurofound — Platform Economy Database",
        "Initiatives, regulation and court decisions on platform work across Europe, searchable by actor and country.",
        "https://apps.eurofound.europa.eu/platformeconomydb/", "Data"],
@@ -176,9 +179,12 @@ window.RESOURCES = [
       ["Republic of Korea — employment insurance for workers in special types of employment",
        "The staged extension of employment insurance and industrial accident insurance to platform and dependent self-employed workers. Wednesday's country experience.",
        "https://www.moel.go.kr/english/main.do", "Practice"],
-      ["Malaysia — self-employment social security scheme (SOCSO/PERKESO)",
-       "Voluntary and sector-mandated coverage of self-employed and e-hailing workers under the Self-Employment Social Security Act. Wednesday's country experience.",
+      ["Malaysia — Gig Workers Act 2025 and mandatory SOCSO coverage",
+       "A standalone framework for gig workers, with social security contributions collected per task (reported at 1.25%) and platforms obliged to register workers, alongside a Gig Workers Tribunal and consultative council. Wednesday's country experience.",
        "https://www.perkeso.gov.my/", "Practice"],
+      ["Chile — Law 21.431 on platform work",
+       "Distinguishes dependent from independent platform workers and sets a social protection baseline. Independently evaluated: limited effect on pay and hours, but a measurable rise in social security coverage — rare evidence on whether this design actually works.",
+       "https://cepr.org/voxeu/columns/regulating-platform-work-where-informality-matters-chilean-case", "Practice"],
       ["Brazil — DATAPREV and digital contribution collection",
        "Registration, collection and data exchange at scale, including the simplified contributor regimes. Thursday's country experience.",
        "https://www.gov.br/previdencia/", "Practice"],
@@ -218,6 +224,7 @@ window.CASELAW = {
     { id: "affiliation", label: "Social security affiliation" },
     { id: "contribution", label: "Who owes the contribution" },
     { id: "scope", label: "Scope of the worker concept" },
+    { id: "regulation", label: "Regulation and governance" },
     { id: "pending", label: "Pending / unsettled" }
   ],
 
@@ -387,6 +394,89 @@ window.CASELAW = {
         "The counterweight in this list. It marks the boundary of the worker concept and is the decision " +
         "platforms cite; a presumption-based design has to be drafted knowing it exists.",
       url: "https://curia.europa.eu/juris/liste.jsf?num=C-692/19"
+    },
+    {
+      country: "South Africa", flagRegion: "Africa",
+      court: "Labour Court of South Africa, Cape Town", date: "12 January 2018",
+      title: "Uber South Africa Technology Services (Pty) Ltd v NUPSAW and Others",
+      cite: "C449/17; [2018] ZALCCT 1; (2018) 39 ILJ 903 (LC)",
+      theme: "contribution",
+      holding:
+        "The Court reviewed and set aside the CCMA's 2017 ruling that Uber drivers were employees. The drivers " +
+        "had not shown an employment relationship with the local entity, Uber South Africa Technology Services, " +
+        "which was the only respondent before it. The Court expressly declined to decide whether they are " +
+        "employees of the Dutch parent, Uber B.V.",
+      design:
+        "Read it next to the Swiss decisions above: in both countries the case turned on which corporate entity " +
+        "was named. A scheme that imposes obligations on 'the platform' without defining the liable legal person " +
+        "— local subsidiary, foreign operator, or permanent establishment — hands that argument to the platform.",
+      url: "https://www.saflii.org/za/cases/ZALCCT/2018/1.html"
+    },
+    {
+      country: "China", flagRegion: "Asia and the Pacific",
+      court: "Supreme People's Court", date: "In force 1 September 2025",
+      title: "Second Judicial Interpretation on labour dispute cases",
+      cite: "Judicial interpretation, social insurance provisions",
+      theme: "affiliation",
+      holding:
+        "Agreements in which a worker waives social insurance, or in which an employer is released from paying " +
+        "social insurance contributions in exchange for a cash allowance, are invalid. The obligation follows " +
+        "from the law and cannot be contracted away by consent.",
+      design:
+        "The principle behind every mandatory scheme, stated plainly by a court in the largest platform market " +
+        "in the world. Where take-home pay today is higher without contributions, voluntary designs lose; this " +
+        "is the legal answer to 'the workers themselves prefer cash'. Its reach still depends on an employment " +
+        "relationship being established in the first place.",
+      url: "https://www.issa.int/platform-workers/media-monitor"
+    },
+    {
+      country: "Republic of Korea", flagRegion: "Asia and the Pacific",
+      court: "Seoul High Court", date: "2026 (reported)",
+      title: "Delivery rider — employee under the Labour Standards Act",
+      cite: "Reported decision; verify against the original judgment",
+      theme: "status",
+      holding:
+        "A platform delivery rider was held to be an employee under the Labour Standards Act. The court treated " +
+        "algorithmic allocation and GPS tracking as evidence of substantial supervision and direction by the " +
+        "platform.",
+      design:
+        "Background to Wednesday's Korean country experience, where employment insurance and industrial accident " +
+        "insurance were extended to workers in special types of employment by statute. Courts and the legislature " +
+        "have been moving on the same problem from two directions — the sequencing question Friday takes up.",
+      url: "https://www.issa.int/platform-workers/media-monitor"
+    },
+    {
+      country: "India", flagRegion: "Asia and the Pacific",
+      court: "Karnataka High Court", date: "2025–2026, listed for hearing",
+      title: "Challenge to the Karnataka Platform Based Gig Workers Act, 2025",
+      cite: "Aggregator challenge to the State welfare fee",
+      theme: "pending",
+      holding:
+        "Aggregators challenged the State's platform-based gig workers legislation, which funds a welfare board " +
+        "through a fee levied on aggregator transactions. The Court declined to stay the Act while the challenge " +
+        "proceeds.",
+      design:
+        "A rare live test of the aggregator levy — a financing instrument several countries are considering " +
+        "because it collects from the platform rather than from irregular worker earnings. Whether it survives " +
+        "matters directly to Lab 2.",
+      url: "https://www.business-humanrights.org/en/latest-news/india-supreme-court-reviews-plea-for-social-security-rights-of-gig-and-platform-workers/"
+    },
+    {
+      country: "Kenya", flagRegion: "Africa",
+      court: "High Court of Kenya", date: "September 2026",
+      title: "Ride-hailing regulations — commission cap struck down",
+      cite: "Challenge to the 2022 transport (ride-hailing) regulations",
+      theme: "regulation",
+      holding:
+        "The Court declared key parts of the ride-hailing regulations, including the cap on platform commissions, " +
+        "unconstitutional for want of adequate public participation — and suspended the declaration for twelve " +
+        "months so that the process could be redone properly.",
+      design:
+        "Not a status case, and that is the point: courts also police how platform rules are made. A regulation " +
+        "that skips consultation can be struck down whatever its merits, and the suspended declaration is a " +
+        "model of how a court gives an administration time to fix process without leaving a vacuum. One for the " +
+        "governance and sequencing block.",
+      url: "https://www.businessdailyafrica.com/bd/economy/blow-to-uber-bolt-drivers-as-court-blocks-18pc-commission-cap-5581212"
     },
     {
       country: "Brazil", flagRegion: "Americas",
