@@ -191,11 +191,15 @@ window.BRAIN = {
 
      PRIVACY RULE: countries and institutions only. No participant names, ever.
 
-     Every entry below is `pending: true` and renders as an awaiting-upload
-     card with its structure visible. To fill one in, set `pending: false` and
-     complete `title`, `problem`, `solution`, `blocks` and `insight`. Add more
-     than one entry per country where several participants presented distinct
-     solutions — use `variant` to tell them apart.
+     Every entry is written up from a presentation that was actually given;
+     Cambodia was registered but submitted nothing, so it is not listed here.
+     To add one, append an entry with `pending: false` and complete `title`,
+     `problem`, `solution`, `blocks` and `insight`. `blocks` holds cluster ids
+     and is what links a solution to the knowledge map above — selecting a
+     cluster on the map filters this wall. Add more than one entry per country
+     where several participants presented distinct solutions — use `variant`
+     to tell them apart. An entry left `pending: true` renders as an
+     awaiting-upload card with its structure visible.
      ------------------------------------------------------------------------ */
   solutions: [
     { country: "Angola", region: "Africa", institutions: ["MAPTSS", "INSS"], presentations: 2, pending: false,
@@ -218,9 +222,6 @@ window.BRAIN = {
         "A scheme that is legally open to a group is not the same as a scheme that covers it. Angola's binding " +
         "constraint was awareness and immediate benefit, not legal scope — so the design put visible short-term " +
         "benefits first and made registration a by-product of being paid." },
-
-    { country: "Cambodia", region: "Asia and the Pacific", institutions: ["NSSF"], presentations: 3, pending: true,
-      title: "", problem: "", solution: "", blocks: [], insight: "" },
 
     { country: "Georgia", region: "Europe and Central Asia", institutions: ["Labour Inspection Office"], presentations: 1, pending: false,
       title: "A labour inspection strategy for domestic work, when the inspector cannot enter the workplace",
