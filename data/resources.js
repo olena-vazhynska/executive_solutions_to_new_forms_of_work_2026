@@ -149,6 +149,15 @@ window.RESOURCES = [
       ["ITCILO Compendium of court decisions",
        "The Centre's own case law collection, searchable by subject — the parent of the case law category below.",
        "https://compendium.itcilo.org/en/decisions-by-subject", "Case law"],
+      ["The Court of Justice part-time line — eight judgments on indirect discrimination",
+       "The case law the course carries for part-time and marginal work, and the reason a threshold is never just an administrative convenience. Bilka-Kaufhaus v Weber von Hartz (C-170/84, 13 May 1986, occupational pension); Rinner-Kühn v FWW (C-171/88, 13 July 1989); Kowalska v Hamburg (C-33/89, 12 June 1990); Nimz v Hamburg (C-184/89, 7 February 1991); Arbeiterwohlfahrt der Stadt Berlin v Bötel (C-360/90, 4 June 1992); Stadt Lengerich v Helmig (C-399/92 and joined cases, 15 December 1994, overtime supplements); Nolte v Landesversicherungsanstalt Hannover (C-317/93, 14 December 1995, exclusion of minor employment from the statutory scheme); Krüger v Kreiskrankenhaus Ebersberg (C-281/97, 9 September 1999). Full texts are in the course tree; citations as recorded in Court_cases.docx. Read Nolte against the others — it is the one that concerns social security directly.",
+       "https://curia.europa.eu/juris/recherche.jsf?language=en", "Case law"],
+      ["Determining the employment relationship — a comparative set",
+       "Eleven decisions the course materials cite for how different systems decide whether an employment relationship exists, useful as comparators when a platform case has no domestic precedent. Ireland, Henry Denny & Sons v Minister for Social Welfare (SC No. 378 of 1995); Australia, Hollis v Vabu Pty Ltd (High Court, 9 August 2001 — bicycle couriers); South Africa, Building Bargaining Council v Melmons Cabinets ((P478/00) [2000] ZALC 127); France, Cour de cassation, Chambre sociale, 19 December 2000, no. 98-40.572; Canada, McCormick v Fasken Martineau DuMoulin (BC Court of Appeal, 2012); India, Zee Entertainment Enterprises v Gajendra Singh (Bombay High Court, 2007); Belgium, O. Jean-Paul v S.P.R.L. (Tribunal du travail de Mons, 2010); Venezuela, Victoria Elena Pérez Mujica (Caracas Labour Appeal Court, 2008, AP21-R-2008-000446); Barbados, Sagicor Insurance (High Court, 2007); New Zealand, Nanzheng Liu v South Pacific Timber (Auckland ERA, 2010); Lesotho, Vodacom Lesotho v DDPR (Labour Court, 2007). Citations as recorded in Court_cases.docx.",
+       "https://normlex.ilo.org/", "Case law"],
+      ["United Kingdom — part-time workers and equal pay",
+       "Ms F James, Ms K Carden and Ms D Butler v Great North Eastern Railways, Appeal No. UKEAT/0496/04/SM, Employment Appeal Tribunal, 1 March 2005 (2005 WL 828212), with the related part-time judgments held in the course tree. Cited in the week for the proposition that a benefit withheld from part-time workers has to be justified on grounds unrelated to sex.",
+       "https://www.gov.uk/employment-appeal-tribunal-decisions", "Case law"],
       ["ILO Policy Resource Package — extending social security and protecting workers in all types of employment",
        "The ILO's modular guidance package, and the backbone of the Wednesday financing session. Separate modules cover domestic workers, the self-employed, micro and small enterprises, agricultural and rural workers, and workers in new forms of work including digital platforms.",
        "https://www.social-protection.org/gimi/Emodule.action?id=126", "Tool"],
@@ -1992,6 +2001,174 @@ window.CASELAW = {
         "benefit fixed in nominal terms quietly stops being adequate, which is why several of the cohort's " +
         "designs index the floor to the minimum wage rather than to a number.",
       url: cpd + "high-court-of-zimbabwe-gift-bob-david-samanyau-38-ors-v-fleximail-private-limited-4-november-2010-and-8-june-2011-hc-108-11"
+    },
+
+    /* ========================================================================
+       FROM THE COURSE MATERIALS — decisions referenced in PPTs\2025
+       ------------------------------------------------------------------------
+       Two compiled lists in the course tree name decisions the week relies on:
+       `Court_cases.docx` and `List_of_recent-decisions_Europe_platform_work
+       .docx`. The Kenyan judgment below was read in full from the file in the
+       same folder; the European entries carry the outcome exactly as the
+       course's own list records it, which is what makes the divergence
+       visible. Each still needs checking against the original judgment.
+       ===================================================================== */
+    {
+      country: "Kenya", flagRegion: "Africa",
+      court: "Industrial Court of Kenya at Nairobi", date: "8 November 2013",
+      title: "Veronica Muthio Kioka v. Catholic University of Eastern Africa",
+      cite: "Cause No. 1161 of 2010 · ILO Conventions Nos 100 and 111; Constitution of Kenya, Art. 2(6)",
+      theme: "scope",
+      holding:
+        "A telephone operator was kept on casual terms for seven years at KSh 7,000 a month while two male " +
+        "colleagues doing the same job held permanent and pensionable appointments on higher pay with " +
+        "allowances. She was recommended for the permanent post after interview, then heard nothing; she was " +
+        "tested for HIV without her consent, her status was disclosed to others, she was told people with HIV " +
+        "could not be employed permanently, was moved onto one-year and then progressively shorter contracts, " +
+        "was refused paid maternity leave and was dismissed on returning from it. Applying Convention No. 100 " +
+        "on equal remuneration and the definition of discrimination in Article 1 of Convention No. 111 — both " +
+        "part of Kenyan law under Article 2(6) of the Constitution — the Court found discrimination on grounds " +
+        "of sex, pregnancy and HIV status and awarded KSh 6,971,346, including KSh 5 million in exemplary " +
+        "damages and the pay differential against her comparators.",
+      design:
+        "The most complete illustration in this collection of what casual status actually costs. Nothing here " +
+        "required a new benefit: the scheme already had equal pay, maternity and permanent terms, and the " +
+        "contractual form alone kept her outside all three for seven years. Every design in the cohort that " +
+        "turns on aggregating short engagements into one worker record is answering this case, and the " +
+        "separate holding that a worker may not be medically unfit merely by virtue of HIV infection is the " +
+        "limit on any medical screening built into an enrolment pathway.",
+      url: cpd + "industrial-court-of-kenya-veronica-muthio-kioka-v-catholic-university-of-eastern-africa-8-november-2013-case-no-1161-of-2010"
+    },
+    {
+      country: "France", flagRegion: "Europe",
+      court: "URSSAF proceedings against Deliveroo", date: "2022",
+      title: "URSSAF v. Deliveroo — reclassification for social security contributions",
+      cite: "Recorded in the course's compiled list of European platform decisions as 'Employee (social security)'",
+      theme: "contribution",
+      holding:
+        "The social security collection agency, not the worker, brought the proceedings, and the outcome " +
+        "recorded is reclassification as employment for social security purposes.",
+      design:
+        "The single most important row in the European table for an institution. Everywhere else the worker " +
+        "has to litigate their own status; here the contribution collector did, and recovered. It is the " +
+        "practical form of the lesson that a presumption is worth nothing to a scheme unless the institution " +
+        "has standing to invoke it — the point Belgium's ONSS and Italy's INPS/INAIL access also make.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "Germany", flagRegion: "Europe",
+      court: "Federal Labour Court (Bundesarbeitsgericht)", date: "2020",
+      title: "Crowdworker for Roamler — employee status",
+      cite: "Recorded in the course's compiled list as 'Employee (single case)'; contrast Higher Labour Court of Munich, 2019, 'Self-employed'",
+      theme: "status",
+      holding:
+        "A crowdworker performing small retail-audit tasks through an app was held to be an employee, " +
+        "reversing the position taken by the Higher Labour Court of Munich the year before on comparable " +
+        "facts.",
+      design:
+        "Micro-task crowdwork, not ride-hailing or delivery — the format the course flags as hardest to reach, " +
+        "because each individual task is trivially short and the worker never meets a human. That the same " +
+        "national system produced opposite answers a year apart is the argument for a status-neutral floor " +
+        "that does not wait for the question to settle.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "Italy", flagRegion: "Europe",
+      court: "Tribunal of Palermo", date: "2020",
+      title: "Glovo rider — employee",
+      cite: "Recorded in the course's compiled list as 'Employee'; contrast Court of Turin, 2019, 'Collaborator (third category)' and Florence Civil Court, 2021, 'Self-employed'",
+      theme: "status",
+      holding:
+        "A Glovo rider was held to be an employee. Within three years Italian courts had placed platform " +
+        "riders in all three categories — employee in Palermo, the intermediate 'client-organised " +
+        "collaboration' in Turin, and genuinely self-employed in Florence.",
+      design:
+        "The clearest single-country demonstration that a three-way classification question decided case by " +
+        "case produces three answers. Italy's later move — the 2026 presumption with five years of records " +
+        "opened to INPS and INAIL — is what a legislature does once it accepts that litigation will not " +
+        "converge.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "Netherlands", flagRegion: "Europe",
+      court: "Amsterdam District Court", date: "2021",
+      title: "Uber drivers — employees under the taxi collective agreement",
+      cite: "Recorded in the course's compiled list as 'Employee'; contrast Amsterdam Civil Court v. Deliveroo (2018) and v. Helping (2019), both 'Self-employed'",
+      theme: "status",
+      holding:
+        "Amsterdam courts moved from finding Deliveroo riders self-employed in 2018 and Helping cleaners " +
+        "self-employed in 2019 to finding Uber drivers employees in 2021, with the Court of Appeal having " +
+        "reclassified the Deliveroo riders as employees in between.",
+      design:
+        "Three platforms, three sectors, one city, four years — and the direction of travel reverses. Read " +
+        "with the Netherlands' planned rate-based presumption, which only the worker may invoke and which tax " +
+        "and UWV cannot: a country can move its case law a long way and still leave its social security " +
+        "institutions unable to use the result.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "Austria", flagRegion: "Europe",
+      court: "Federal Administrative Court", date: "2021",
+      title: "Platform workers — four decisions, two each way",
+      cite: "Recorded in the course's compiled list as 'Employee (two cases)' and 'Self-employed (two cases)', same court, same year",
+      theme: "pending",
+      holding:
+        "The same court in the same year found platform workers to be employees in two cases and self-employed " +
+        "in two others.",
+      design:
+        "The cleanest available evidence that the multi-factor test is indeterminate at the margin: hold the " +
+        "court, the jurisdiction and the year constant and the answer still splits. An administration cannot " +
+        "plan a contribution base on a test that behaves this way, which is the whole argument for attaching " +
+        "a floor to the income rather than to the status.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "France", flagRegion: "Europe",
+      court: "Lyon Court of Appeal", date: "2021",
+      title: "Uber driver — self-employed",
+      cite: "Recorded in the course's compiled list as 'Self-employed', the year after the Cour de cassation's 2020 Uber reclassification",
+      theme: "pending",
+      holding:
+        "A court of appeal found an Uber driver self-employed a year after the Cour de cassation had held, in " +
+        "the leading case, that a driver who builds no clientele of their own and cannot set the price is in a " +
+        "relationship of subordination.",
+      design:
+        "A supreme court ruling does not settle the facts of every later case, and lower courts keep deciding " +
+        "both ways on their own records. For a scheme designer this is the cost estimate problem: the size of " +
+        "the covered population stays uncertain for years after the leading case is won.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "Spain", flagRegion: "Europe",
+      court: "Court of Valencia", date: "2018",
+      title: "Deliveroo rider — employee",
+      cite: "Recorded in the course's compiled list as 'Employee (single case)', two years before the Supreme Court's Glovo ruling",
+      theme: "status",
+      holding:
+        "A Valencia court found a Deliveroo rider to be an employee in 2018, two years ahead of the Supreme " +
+        "Court's unification of doctrine in the Glovo case and three years ahead of the Riders' Law.",
+      design:
+        "The first rung of the sequence Spain is cited for all week: first-instance findings, then unification " +
+        "of doctrine, then a statutory presumption, then inspectorate action and contribution recovery at " +
+        "scale. The lesson is how long the ladder is — roughly a decade from this decision to the contribution " +
+        "claims.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
+    },
+    {
+      country: "Belgium", flagRegion: "Europe",
+      court: "Enterprise Court of Brussels", date: "2019",
+      title: "UberX drivers — self-employed",
+      cite: "Recorded in the course's compiled list as 'Self-employed', before the 2023 eight-criteria presumption",
+      theme: "status",
+      holding:
+        "Brussels found UberX drivers self-employed in 2019. Belgium then legislated a presumption of " +
+        "employment resting on three of eight criteria, or two of the last five, in 2023.",
+      design:
+        "Shows the legislative response arriving precisely because the judicial answer went the other way. " +
+        "Belgium then did the thing that matters for institutions: the National Social Security Office became " +
+        "a party to the platform litigation, and a platform-paid accident insurance floor was added for those " +
+        "who remain self-employed.",
+      url: "https://apps.eurofound.europa.eu/platformeconomydb/"
     }
   ]
 };
