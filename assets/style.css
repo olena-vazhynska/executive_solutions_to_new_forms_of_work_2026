@@ -60,16 +60,16 @@ a { color: var(--primary); }
   padding: 36px 0 30px;
 }
 
-/* The course key visual, shown as a full-width banner inside the hero rather
-   than washed behind the page. The source artwork is portrait with the bulb
-   high in the frame, so the banner crop is pulled from its upper third. */
-.hero-art {
-  margin: 20px 0 24px; border-radius: 14px; overflow: hidden; line-height: 0;
-  box-shadow: 0 10px 32px rgba(8,18,40,.35); border: 1px solid rgba(255,255,255,.22);
+/* The hero follows the reference dashboard: type, meta and KPIs on the blue,
+   with no imagery. The key visual instead opens the Overview tab as a slim
+   strip, sized so it reads as a course mark rather than a banner. */
+.key-strip {
+  margin: 0 0 16px; border-radius: var(--radius); overflow: hidden; line-height: 0;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
 }
-.hero-art img {
-  width: 100%; height: clamp(190px, 26vw, 330px);
-  object-fit: cover; object-position: center 30%; display: block;
+.key-strip img {
+  width: 100%; height: clamp(104px, 11vw, 146px);
+  object-fit: cover; object-position: center 32%; display: block;
 }
 
 /* The cohort photograph, under the closing message on the Overview tab. */
