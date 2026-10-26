@@ -146,7 +146,12 @@
       box.innerHTML =
         '<div><div class="next-label">Course completed</div>' +
         '<div class="next-title">Thank you for a week of executive solutions.</div>' +
-        '<p class="muted" style="margin:.4rem 0 0;color:rgba(255,255,255,.82)">The Collective brain tab holds what the cohort built. The individual assignment closes the 60 learning hours.</p></div>' +
+        '<p class="muted" style="margin:.4rem 0 0;color:rgba(255,255,255,.82)">The Collective brain tab holds what the cohort built. The individual assignment closes the 60 learning hours.</p>' +
+        '<figure class="cohort-shot">' +
+          '<img src="assets/cohort.jpg" width="1600" height="1067" loading="lazy" decoding="async" ' +
+            'alt="The A9019238 cohort on the ITCILO campus in Turin, October 2026.">' +
+          "<figcaption>The cohort · ITCILO Campus, Turin · 19&ndash;23 October 2026</figcaption>" +
+        "</figure></div>" +
         '<div class="countdown"><div><b>' + C.days + "</b><span>days</span></div><div><b>" + sessions.filter(function (x) { return x.kind === "lab"; }).length + "</b><span>labs</span></div></div>";
       return;
     }
