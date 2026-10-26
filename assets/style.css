@@ -50,27 +50,37 @@ a { color: var(--primary); }
 .eyebrow { font: 700 12px/1 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin: 0 0 8px; }
 
 /* Hero — course image under an ITCILO-blue overlay */
-/* The course key visual sits behind the hero, darkened from the left so the
-   title keeps its contrast while the colour burst stays visible on the right.
-   The ILO blue remains the base layer, so the hero still reads as ITCILO. */
 .hero {
   color: #fff;
   position: relative;
-  isolation: isolate;
   background:
-    linear-gradient(104deg, rgba(27,52,104,.96) 0%, rgba(40,75,150,.86) 42%, rgba(40,75,150,.42) 72%, rgba(40,75,150,.20) 100%),
-    url("key-visual.jpg") center 38% / cover no-repeat,
+    radial-gradient(900px 420px at 88% -10%, rgba(0,163,224,.42) 0%, rgba(0,163,224,0) 62%),
+    radial-gradient(620px 320px at 12% 110%, rgba(0,163,224,.20) 0%, rgba(0,163,224,0) 60%),
     linear-gradient(104deg, #1b3468 0%, #284B96 52%, #3a5bad 100%);
   padding: 36px 0 30px;
 }
-@media (max-width: 760px) {
-  /* On narrow screens the burst falls behind the text, so lean on the blue. */
-  .hero {
-    background:
-      linear-gradient(104deg, rgba(27,52,104,.97) 0%, rgba(40,75,150,.93) 60%, rgba(40,75,150,.78) 100%),
-      url("key-visual.jpg") center 30% / cover no-repeat,
-      linear-gradient(104deg, #1b3468 0%, #284B96 52%, #3a5bad 100%);
-  }
+
+/* The course key visual, shown as an image rather than washed behind the page:
+   the title column and the visual sit side by side, and it drops below the
+   text on narrow screens. */
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 30px; align-items: center; }
+.hero-art {
+  margin: 0; border-radius: 14px; overflow: hidden; line-height: 0;
+  box-shadow: 0 10px 32px rgba(8,18,40,.35); border: 1px solid rgba(255,255,255,.22);
+}
+/* The artwork is portrait with the bulb high in the frame, so a landscape
+   crop is pulled from the upper third. */
+.hero-art img { width: 100%; height: 228px; object-fit: cover; object-position: center 24%; display: block; }
+.hero-art figcaption {
+  font: 600 10.5px/1.4 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .07em;
+  color: rgba(255,255,255,.78); padding: 8px 11px; background: rgba(10,22,48,.42);
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 20px; }
+  .hero-art { order: -1; }
+  /* Full-width here, so the slot is very wide against a portrait source —
+     give it more height or the crop closes right in on the bulb. */
+  .hero-art img { height: 215px; object-position: center 26%; }
 }
 .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--ilo-cyan); }
 .hero h1 { font-weight: 800; text-transform: uppercase; font-size: clamp(27px, 5vw, 46px); line-height: 1.04; margin: 14px 0 10px; letter-spacing: -.005em; text-shadow: 0 1px 12px rgba(16,24,48,.35); }
