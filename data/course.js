@@ -148,6 +148,33 @@ window.COURSE = {
   ],
 
   /* ---------------------------------------------------------------------------
+     WHERE EACH TOOLBOX BLOCK LEADS
+     Keyed by block number. `groups` are RESOURCES category titles, used to
+     pre-filter the Resources explorer; `cluster` is the knowledge-map cluster
+     id in data/brain.js; `flow` is a node id in data/flow.js. These drive the
+     "explore further" links under each block and each Scheme Design Lab, so a
+     session is never a dead end.
+     ------------------------------------------------------------------------ */
+  toolboxLinks: {
+    1: { groups: ["Diagnosis — data on coverage, informality and platform work"],
+         cluster: null,            flow: "ch.platform" },
+    2: { groups: ["Classification, coverage and legal design"],
+         cluster: "scope",         flow: "cv.neutral" },
+    3: { groups: ["International labour standards and global frameworks"],
+         cluster: "architecture",  flow: "cv.mandatory" },
+    4: { groups: ["Financing and contribution design"],
+         cluster: "financing",     flow: "fi.platform" },
+    5: { groups: ["Voice, representation and social dialogue"],
+         cluster: "voice",         flow: "sq.ministry" },
+    6: { groups: ["Administration, digital tools and data exchange"],
+         cluster: "administration", flow: "pa.api" },
+    7: { groups: ["Around the world in new forms of work — the regional menu"],
+         cluster: "governance",    flow: "sq.ssi" },
+    8: { groups: ["Case law"],
+         cluster: "governance",    flow: null }
+  },
+
+  /* ---------------------------------------------------------------------------
      TIMETABLE — the residential week, exactly as in the agenda.
      ------------------------------------------------------------------------ */
   programme: [

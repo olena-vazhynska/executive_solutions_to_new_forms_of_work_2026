@@ -81,6 +81,27 @@
   });
   window.DASH = { showTab: showTab };   // used by the Collective brain module
 
+  /* ---------- "Explore further" jumps --------------------------------------
+     Any element carrying data-jump="<tab>|<argument>" switches tab and hands
+     the argument to that tab: a RESOURCES category title for the explorer, or
+     a flow node / cluster id for the collective brain. This is what stops a
+     session or a toolbox block from being a dead end.                       */
+  document.addEventListener("click", function (e) {
+    var j = e.target.closest("[data-jump]");
+    if (!j) return;
+    e.preventDefault();
+    var bits = j.dataset.jump.split("|"), tab = bits[0], arg = bits[1] || "";
+    showTab(tab);
+    if (tab === "resources" && typeof window.exploreFilter === "function") {
+      window.exploreFilter(arg);
+    }
+    if (tab === "brain" && typeof window.brainFocus === "function") {
+      window.brainFocus(arg);
+    }
+    var panel = document.getElementById("panel-" + tab);
+    if (panel) panel.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
   /* ---------- Hero ---------- */
   function renderHero() {
     $("#hero-lead").textContent = C.lead;
@@ -238,6 +259,33 @@
     }).join("");
   }
 
+  /* The two "explore further" links under a toolbox block or a lab session:
+     one into the Resources explorer, pre-filtered to the block's category,
+     one into the Collective brain at the node that block feeds. */
+  function exploreLinks(blockN) {
+    var map = (C.toolboxLinks || {})[blockN];
+    if (!map) return "";
+    var out = [];
+    (map.groups || []).forEach(function (g) {
+      var n = countInGroup(g);
+      out.push('<button class="tb-go" data-jump="resources|' + esc(g) + '">' +
+        esc(shortGroup(g)) + (n ? " <b>" + n + "</b>" : "") + "</button>");
+    });
+    if (map.flow || map.cluster) {
+      out.push('<button class="tb-go brain" data-jump="brain|' + esc(map.flow || map.cluster) + '">' +
+        "In the collective brain</button>");
+    }
+    return '<div class="tb-go-row"><span class="eyebrow">Explore further</span>' + out.join("") + "</div>";
+  }
+  function shortGroup(title) {
+    return String(title).split(" — ")[0].split(",")[0];
+  }
+  function countInGroup(title) {
+    if (title === "Case law") return L ? L.decisions.length : 0;
+    for (var i = 0; i < R.length; i++) if (R[i].title === title) return R[i].items.length;
+    return 0;
+  }
+
   function renderToolbox() {
     $("#toolbox").innerHTML = C.toolbox.map(function (b) {
       return '<article class="tb-block' + (b.lab ? " has-lab" : "") + '">' +
@@ -246,8 +294,28 @@
         "<p class=\"tb-blurb\">" + esc(b.blurb) + "</p>" +
         '<div class="tb-tools">' + b.tools.map(function (t) { return '<span class="im-tag">' + esc(t) + "</span>"; }).join("") + "</div>" +
         (b.lab ? '<p class="tb-lab"><span class="tb-lab-tag">Scheme Design Lab</span>' + esc(b.lab) + "</p>" : "") +
+        exploreLinks(b.n) +
         "</article>";
     }).join("");
+  }
+
+  /* Sessions inherit the explore-further links of the toolbox block built that
+     day, so the timetable leads somewhere too. The map is by day number. */
+  var DAY_BLOCK = { 1: 1, 2: 3, 3: 4, 4: 6, 5: 7 };
+  function sessionLinks(s) {
+    if (s.kind === "social") return "";
+    var day = s.day && s.day.n;
+    var blockN = s.isLab ? DAY_BLOCK[day] : (s.kind === "plenary" || s.kind === "design" ? DAY_BLOCK[day] : null);
+    if (!blockN) return "";
+    var map = (C.toolboxLinks || {})[blockN];
+    if (!map) return "";
+    var g = (map.groups || [])[0];
+    return '<div class="s-go">' +
+      (g ? '<button class="tb-go sm" data-jump="resources|' + esc(g) + '">' + esc(shortGroup(g)) + "</button>" : "") +
+      ((map.flow || map.cluster)
+        ? '<button class="tb-go sm brain" data-jump="brain|' + esc(map.flow || map.cluster) + '">Collective brain</button>'
+        : "") +
+      "</div>";
   }
 
   var dayFilter = "all", labsOnly = false;
@@ -275,6 +343,7 @@
               '<p class="s-title">' + esc(s.title) + "</p>" +
               (s.subtitle ? '<p class="s-sub">' + esc(s.subtitle) + "</p>" : "") +
               '<div class="s-people">' + (s.people || []).map(function (p) { return '<span class="chip">' + esc(p) + "</span>"; }).join("") + "</div>" +
+              sessionLinks(s) +
             "</div>" +
             '<div class="s-side">' + badge + "</div>" +
           "</div>";

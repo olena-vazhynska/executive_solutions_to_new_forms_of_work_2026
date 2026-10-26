@@ -316,6 +316,26 @@
     if (m) { showAll = m.dataset.mode === "all"; render(); return; }
     if (e.target.closest("[data-clear]")) { selected = null; render(); }
   });
+  /* Called from the Learning journey tab: focus a flow node (or, if a cluster
+     id is passed, the first node that cites it) and scroll it into view. */
+  window.brainFocus = function (id) {
+    if (!id) return;
+    var hit = nodeById(id);
+    if (!hit) {
+      hit = F.nodes.filter(function (n) {
+        return (n.evidence && (n.evidence.groups || []).indexOf(id) >= 0) || n.col === id;
+      })[0];
+    }
+    if (!hit) return;
+    if (!visibleIds()[hit.id]) showAll = true;   // reveal it if it is below the fold
+    selected = hit.id;
+    render();
+    setTimeout(function () {
+      var el = document.getElementById("fn-" + hit.id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 120);
+  };
+
   window.addEventListener("resize", scheduleDraw);
   document.addEventListener("tabshown", scheduleDraw);
 
