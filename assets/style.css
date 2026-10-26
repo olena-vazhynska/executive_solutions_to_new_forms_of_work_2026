@@ -50,26 +50,19 @@ a { color: var(--primary); }
 .eyebrow { font: 700 12px/1 "Noto Sans", sans-serif; text-transform: uppercase; letter-spacing: .1em; color: var(--accent); margin: 0 0 8px; }
 
 /* Hero — course image under an ITCILO-blue overlay */
+/* The hero follows the reference dashboard exactly: the course image behind
+   two blue scrims — one rising from the bottom, one running left to right —
+   anchored to the right so the type sits on the opaque side. The flat
+   gradient stays underneath as the fallback if the image fails. */
 .hero {
   color: #fff;
   position: relative;
   background:
-    radial-gradient(900px 420px at 88% -10%, rgba(0,163,224,.42) 0%, rgba(0,163,224,0) 62%),
-    radial-gradient(620px 320px at 12% 110%, rgba(0,163,224,.20) 0%, rgba(0,163,224,0) 60%),
+    linear-gradient(to top, rgba(31,58,115,.94) 6%, rgba(31,58,115,.30) 60%, rgba(31,58,115,.10) 100%),
+    linear-gradient(100deg, rgba(40,75,150,.96) 0%, rgba(40,75,150,.78) 48%, rgba(40,75,150,.42) 100%),
+    url("course-hero.jpg?v=1") 100% 50% / cover no-repeat,
     linear-gradient(104deg, #1b3468 0%, #284B96 52%, #3a5bad 100%);
   padding: 36px 0 30px;
-}
-
-/* The hero follows the reference dashboard: type, meta and KPIs on the blue,
-   with no imagery. The key visual instead opens the Overview tab as a slim
-   strip, sized so it reads as a course mark rather than a banner. */
-.key-strip {
-  margin: 0 0 16px; border-radius: var(--radius); overflow: hidden; line-height: 0;
-  border: 1px solid var(--border); box-shadow: var(--shadow);
-}
-.key-strip img {
-  width: 100%; height: clamp(104px, 11vw, 146px);
-  object-fit: cover; object-position: center 32%; display: block;
 }
 
 /* The cohort photograph, under the closing message on the Overview tab. */
